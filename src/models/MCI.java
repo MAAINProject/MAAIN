@@ -135,21 +135,22 @@ public class MCI {
  List<Float> prodTransCLI(List<Float> liste)
  {
 	 
-	 List<Float> res=new ArrayList<Float>();
-	 int n=maxI();
+	 
+	 int n=maxI() + 1;
+	 ArrayList<Float> res=new ArrayList<Float>();
 	 for(int i=0;i<n;i++)
 	 {
 		 res.add(i,0.f);
 		 
 	 }
 	 
-	 for(int i=0;i<n;i++)
+	 for(int i=0;i<I.size();i++)
 	 {
 		
 		 for(int j=L.get(i);j<L.get(i+1);j++)
 		 {
-			 res.add(I.get(j),res.get(I.get(j))+(C.get(j)*liste.get(i)));
-			 
+			 float index = res.get(I.get(j))+(C.get(j)*liste.get(i));
+			 res.set(I.get(j),index);
 		 }
 	 }
 	 
