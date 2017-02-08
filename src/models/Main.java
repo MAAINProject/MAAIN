@@ -5,14 +5,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
-
-
-
-
 public class Main {
-	
+
 	private static float mat[][];
 	private static Map<Integer, List<Integer>> myMap = new HashMap<>();
 	private static int x[] = new int[2];
@@ -26,65 +20,56 @@ public class Main {
 
 		List<Integer> liste = new ArrayList<Integer>();
 		myMap.put(y, liste);
-		
+
 		BufferedReader br = new BufferedReader(new FileReader("res/p2p-Gnutella.txt"));
 		String buf;
 		buf = br.readLine();
-		String [] results;
+		String[] results;
 		int j;
-		
-		while ((buf = br.readLine()) != null)
-		{
-			if(buf.charAt(0) == '#')
+
+		while ((buf = br.readLine()) != null) {
+			if (buf.charAt(0) == '#')
 				continue;
 			results = buf.split("\t");
-			ajouter(Integer.parseInt(results[0]),Integer.parseInt(results[1]));
+			ajouter(Integer.parseInt(results[0]), Integer.parseInt(results[1]));
 		}
 
 		for (Integer s : myMap.keySet()) {
 			System.out.print(s + " :");
-			 for (Integer ss : myMap.get(s)) {
-			 System.out.print(" " + ss);
-			 }
+			for (Integer ss : myMap.get(s)) {
+				System.out.print(" " + ss);
+			}
 			System.out.println("\n");
 		}
 
-		
+		remplirCLI();
 
-		 remplirCLI();
-		 
+		compresse.afficheCLI();
 
-		 compresse.afficheCLI();
-		 
-		 List<Float> lis = new ArrayList<Float>();
+		List<Float> lis = new ArrayList<Float>();
 
-			int max = compresse.maxI() + 1;
+		int max = compresse.maxI() + 1;
 
-			lis.add(0, 1.f);
+		lis.add(0, 1.f);
 
-			for (int i = 1; i < max; i++) {
-				lis.add(i, 0.f);
-			}
-		 
-		 List<Float> res= compresse.prodTransCLI(lis);
-		 for(int i=0;i<res.size();i++)
-		 {
-			 System.out.print(res.get(i)+"\t");
-		 }
-		
-		 
+		for (int i = 1; i < max; i++) {
+			lis.add(i, 0.f);
+		}
+
+		List<Float> res = compresse.prodTransCLI(lis);
+		for (int i = 0; i < res.size(); i++) {
+			System.out.print(res.get(i) + "\t");
+		}
 
 	}
-	
-	public static void ajouter(Integer sommet) 
-	{
+
+	public static void ajouter(Integer sommet) {
 		if (myMap.containsKey(sommet))
 			return;
 		myMap.put(sommet, new ArrayList<Integer>());
 	}
-	
-	public static void ajouter(Integer de, Integer a) 
-	{
+
+	public static void ajouter(Integer de, Integer a) {
 		ajouter(de);
 		ajouter(a);
 		myMap.get(de).add(a);
@@ -112,7 +97,7 @@ public class Main {
 					compresse.getI().add(e.getValue().get(f));
 				}
 
-				compresse.getL().add(contenu + 1);
+				compresse.getL().add(contenu);
 				parcours++;
 
 			}
